@@ -4,4 +4,4 @@ zram-$(CONFIG_ZRAM_DEDUP)	+=	zram_dedup.o
 
 obj-$(CONFIG_ZRAM)	+=	zram.o
 
-obj-$(CONFIG_ZRAM)      += hybridswap/
+#obj-$(CONFIG_ZRAM)      += hybridswap/
