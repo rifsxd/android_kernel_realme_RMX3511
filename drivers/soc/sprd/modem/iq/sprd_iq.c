@@ -111,7 +111,7 @@ static int sprd_iq_thread(void *data)
 	return 0;
 }
 
-#if IS_ENABLED(CONFIG_USB_F_VSERIAL)
+//#if IS_ENABLED(CONFIG_USB_F_VSERIAL)
 static void sprd_iq_complete(char *buf,  unsigned int length, void *unused)
 {
 	char *vaddr;
@@ -130,7 +130,7 @@ static void sprd_iq_complete(char *buf,  unsigned int length, void *unused)
 			iq.header_info->head_2->data_len))
 		iq.header_info->head_2->WR_RD_FLAG = IQ_BUF_READ_FINISHED;
 }
-#endif
+//#endif
 
 static long iq_mem_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 {
