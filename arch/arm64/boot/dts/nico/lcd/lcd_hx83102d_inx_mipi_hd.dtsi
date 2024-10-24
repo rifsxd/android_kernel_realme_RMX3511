@@ -1,0 +1,134 @@
+
+/*
+ * R61350 Truly LCD config dtsi file for spreadtrum
+ *
+ * Copyright (C) 2018, Spreadtrum Communications Inc.
+ *
+ * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ */
+
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_hx83102d_inx_mipi_hd: lcd_hx83102d_inx_mipi_hd {
+
+					sprd,dsi-work-mode = <1>; /* video burst mode*/
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "rgb888";
+
+					sprd,phy-bit-clock = <552000>;	/* kbps */
+					sprd,phy-escape-clock = <20000>;/* kHz */
+
+					sprd,video-lp-cmd-enable = <1>;
+					sprd,hporch-lp-disable = <1>;
+					sprd,dpi-clk-div = <6>;
+					sprd,last-brightness = <0>;
+					sprd,backlight-first-delay = <34>;
+
+
+					sprd,width-mm = <68>;
+					sprd,height-mm = <151>;
+
+					sprd,esd-check-enable = <1>;
+					sprd,esd-check-mode = <0>;
+					sprd,esd-check-period = <2000>;
+					sprd,esd-check-register = <0x0A>;
+					sprd,esd-check-value = <0x9D>;
+
+					sprd,reset-on-sequence = <1 5>, <0 5>, <1 60>;
+					sprd,reset-off-sequence = <0 5>;
+
+					sprd,power-i2c-bus = <4>;
+					sprd,power-i2c-addr = <0x3e>;
+					sprd,power-i2c-reg = [00 01 03];
+					sprd,power-i2c-val = [12 12 53];
+
+					sprd,use-dcs-write;
+					sprd,initial-command = [
+						39 00 00 04 B9 83 10 2D
+						39 00 00 0C C0 30 30 00 00 19 21 00 08 00 1A 1B
+						39 00 00 0C B1 22 44 2F 2F 22 44 43 57 0D 0D 0D
+						39 00 00 0F B2 00 00 06 40 00 1E EE 33 00 00 00 00 14 A0
+						39 00 00 0F B4 0C 54 0C 54 54 57 54 57 08 FF 03 00 00 FF
+						15 00 00 02 CC 02
+						39 00 00 1A D3 06 02 3C 01 00 0C 00 3B 37 34 37 22 00 22 00 32 10 20 00 20 54 16 66 00 00
+						39 00 00 2D D5 18 18 18 18 18 18 24 25 1A 1A 1B 1B 00 01 02 03 04 05 06 07 08 09 0A 0B 20 21 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18
+						39 00 00 04 E7 FF 0D 01
+						15 00 00 02 BD 01
+						15 00 00 02 E7 01
+						15 00 00 02 BD 00
+						39 00 00 2F E0 00 02 07 0C 10 13 26 2A 30 2D 49 51 5A 6D 6F 7D 89 A3 A9 57 62 71 7F 00 02 07 0C 10 13 26 2A 30 2D 49 51 5A 6D 6F 7D 89 A3 A9 57 62 71 7F
+						39 00 00 14 BA 70 23 A8 83 B2 C0 C0 01 10 00 00 00 0C 3D 82 77 04 01 00
+						39 00 00 07 C7 00 C2 00 10 42 C0
+						39 00 00 08 BF FC 00 04 9E F6 00 4D
+						39 00 00 06 CB 00 13 00 02 41
+						15 00 00 02 BD 01
+						15 00 00 02 CB 01
+						15 00 00 02 BD 02
+						39 00 00 09 B4 42 00 33 00 33 88 B3 00
+						39 00 00 04 B1 7F 03 FF
+						15 00 00 02 BD 00
+						15 00 00 02 35 00
+						05 3C 00 01 11        
+						39 00 00 03 51 00 00
+						39 00 00 05 C9 04 08 76 01
+						15 0A 00 02 55 00
+						15 00 00 02 53 24
+						15 00 00 02 35 00
+						05 14 00 01 29
+						];
+
+					sprd,sleep-in-command = [
+						05 14 00 01 28
+						05 78 00 01 10
+						];
+
+					sprd,sleep-out-command = [
+						05 78 00 01 11
+						05 14 00 01 29
+						];
+
+					sprd,cabc-off-command = [
+						23 00 00 02 55 00
+						];
+					sprd,cabc-ui-command = [
+						23 00 00 02 55 01
+						];
+					sprd,cabc-still-image-command = [
+						23 00 00 02 55 02
+						];
+					sprd,cabc-video-command = [
+						23 00 00 02 55 03
+						];
+
+
+					display-timings {
+						native-mode = <&hx83102d_inx_timing0>;
+
+						hx83102d_inx_timing0: timing0 {
+							clock-frequency = <92000000>;
+							hactive = <720>;
+							vactive = <1600>;
+							hback-porch = <36>;
+							hfront-porch = <36>;
+							vback-porch = <32>;
+							vfront-porch = <240>;
+							hsync-len = <24>;
+							vsync-len = <4>;
+						};
+					};
+
+					oled-backlight {
+						default-brightness = <1306>;
+						sprd,max-level = <4095>;
+						brightness-levels = [
+            		    	39 00 00 03 51 00 04
+						];
+					};
+				};
+			};
+		};
+	};
+};

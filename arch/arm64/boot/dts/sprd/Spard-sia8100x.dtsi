@@ -1,0 +1,40 @@
+/* Copyright (c) 2018, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			sia81xx_L: sia81xx@L {
+				compatible = "si,sia81xx";
+				si,sia81xx_type = "sia8100x";
+				si,sia81xx_reset = <&ap_gpio 16 0>;
+				si,sia81xx_owi = <&ap_gpio 16 0>;
+				si,sia81xx_id = <&ap_gpio 88 0>;
+
+				si,sia81xx_disable_pin = <0>;
+
+				/* the same value share a same task
+				 * valid value range : 0 ~ 7 */
+				timer_task_hdl = <0>;
+
+				channel_num = <0>;
+				owi_mode = <9>;
+				en_x_filter = <0>;
+				en_dynamic_id = <0>;
+				en_dynamic_updata_vdd = <0>;
+				en_dynamic_updata_pvdd = <0>;
+				dynamic_updata_vdd_port = <0x2>;
+			};
+		};
+	};
+};

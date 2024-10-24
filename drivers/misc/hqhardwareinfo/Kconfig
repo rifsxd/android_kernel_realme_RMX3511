@@ -1,0 +1,4 @@
+config HQ_HARDWARE_INFO
+	tristate "hardware info"
+	help
+		define this config to compile hardware_info.c for device register

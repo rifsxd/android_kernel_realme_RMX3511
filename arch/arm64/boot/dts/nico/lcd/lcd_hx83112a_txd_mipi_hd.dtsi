@@ -1,0 +1,150 @@
+/*
+ * R61350 Truly LCD config dtsi file for spreadtrum
+ *
+ * Copyright (C) 2018, Spreadtrum Communications Inc.
+ *
+ * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ */
+
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_hx83112a_txd_mipi_hd: lcd_hx83112a_txd_mipi_hd {
+
+					sprd,dsi-work-mode = <1>; /* video burst mode*/
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "rgb888";
+
+					sprd,phy-bit-clock = <691000>;	/* kbps */
+					sprd,phy-escape-clock = <20000>;/* kHz */
+
+					sprd,width-mm = <68>;
+					sprd,height-mm = <151>;
+
+					sprd,esd-check-enable = <1>;
+					sprd,esd-check-mode = <1>;
+					sprd,esd-check-period = <2000>;
+					/* sprd,esd-check-register = <0x0A>; */
+					/* sprd,esd-check-value = <0x9C>; */
+
+					sprd,power-i2c-bus = <4>;
+					sprd,power-i2c-addr = <0x3e>;
+					sprd,power-i2c-reg = [00 01 03];
+					sprd,power-i2c-val = [10 10 03];
+
+					sprd,reset-on-sequence = <1 5>, <0 5>, <1 20>;
+					sprd,reset-off-sequence = <0 5>;
+
+					sprd,use-dcs-write;
+					sprd,initial-command = [
+					39 00 00 04 B9 83 11 2A
+					39 00 00 05 CF 00 14 00 C0
+					39 00 00 05 C4 06 04 04 81
+					15 00 00 02 CC 08
+					39 00 00 05 C9 04 0A 8C 01
+					39 00 00 09 B1 08 29 29 80 80 4F 4A AA
+					39 00 00 10 B2 00 02 00 62 40 00 08 30 14 11 15 00 10 A3 87
+					39 00 00 03 D2 2C 2C
+					39 00 00 1C B4 0B C8 0B C8 00 00 0B CD 00 00 0B CD 00 FF 00 FF 00 00 0C 0F 00 30 08 0D 0F 00 30
+					39 00 00 09 C7 00 00 04 E0 33 00 20 40
+					//39 00 00 04 B6 7B 7B E3
+					39 00 00 2B D3 C0 00 00 00 00 00 00 05 05 04 04 00 1F 0B 0B 0B 0B 32 10 0A 00 0A 32 16 23 06 23 32 10 06 00 06 00 00 00 00 00 00 00 23 06 64
+					15 00 00 02 BD 01
+					39 00 00 04 CB 25 11 01
+					15 00 00 02 BD 00
+					39 00 00 31 D5 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 31 31 30 30 2F 2F 20 20 00 00 01 01 02 02 03 03 04 04 40 40 19 19 18 18 18 18 18 18
+					39 00 00 31 D6 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 31 31 30 30 2F 2F 20 20 04 04 03 03 02 02 01 01 00 00 40 40 19 19 18 18 18 18 18 18
+					39 00 00 19 D8 AA AA AA AF FE EA AA AA AA AF FE EA AA AA AA AA AA EA AA AA AA AA AA EA
+					15 00 00 02 BD 01
+					39 00 00 19 D8 AA AA AF EF FF AA AA AA AF EF FF AA AA AA AF EF FF AA AA AA AF EF FF AA
+					15 00 00 02 BD 02
+					39 00 00 0D D8 AA AA AF EF FF AA AA AA AF EF FF AA
+					15 00 00 02 BD 03
+					39 00 00 19 D8 AA AA AA AF FE EA AA AA AA AF FE EA AA AA AF FF FF AA AA AA AF FF FF AA
+					15 00 00 02 BD 00
+					39 00 00 18 E7 0F 0F 1E 74 1E 74 00 50 02 02 00 00 02 02 02 05 14 14 32 B9 23 B9 08
+					15 00 00 02 BD 01
+					39 00 00 09 E7 02 00 64 01 6C 0E 65 0F
+					15 00 00 02 BD 02
+					39 00 00 1E E7 00 00 08 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 00 00 00 00 02 00
+					15 00 00 02 BD 00
+					15 00 00 02 E9 C3
+					39 00 00 03 CB D2 28
+					15 00 00 02 E9 3F
+					15 00 00 02 C1 01
+					15 00 00 02 BD 01
+					15 00 00 02 E9 C8
+					15 00 00 02 D3 81
+					15 00 00 02 E9 3F
+					15 00 00 02 BD 00
+					39 00 00 03 C1 01 00
+					15 00 00 02 BD 01
+					39 00 00 3A C1 FF FA F5 F1 EC E8 E3 DB D6 D2 CD C8 C4 BF BB B6 B2 AD A9 A0 97 8F 87 7F 77 6F 67 60 58 50 49 43 3C 35 2D 26 1F 19 11 0A 06 05 02 01 00 1C DC 8B 7B 24 80 68 FD 8E 8E EE 00
+					15 00 00 02 BD 02
+					39 00 00 3A C1 FF FA F5 F1 EC E8 E3 DB D6 D2 CD C8 C4 BF BB B6 B2 AD A9 A0 97 8F 87 7F 77 6F 67 60 58 50 49 43 3C 35 2D 26 1F 19 11 0A 06 05 02 01 00 1C DC 8B 7B 24 80 68 FD 8E 8E EE 00
+					15 00 00 02 BD 03
+					39 00 00 3A C1 FF FA F5 F1 EC E8 E3 DB D6 D2 CD C8 C4 BF BB B6 B2 AD A9 A0 97 8F 87 7F 77 6F 67 60 58 50 49 43 3C 35 2D 26 1F 19 11 0A 06 05 02 01 00 1C DC 8B 7B 24 80 68 FD 8E 8E EE 00
+					15 00 00 02 BD 00
+					39 00 00 02 35 00
+					05 50 00 01 11
+					39 00 00 03 51 0F FF
+					15 05 00 02 55 00
+					15 00 00 02 53 24
+					05 14 00 01 29
+						];
+
+					sprd,sleep-in-command = [
+						15 32 00 01 28
+						15 96 00 01 10
+						];
+
+					sprd,sleep-out-command = [
+						15 78 00 01 11
+						15 32 00 01 29
+						];
+
+
+					sprd,cabc-off-command = [
+					  23 00 00 02 55 00
+					  ];
+					sprd,cabc-ui-command = [
+					  23 00 00 02 55 01
+					  ];
+					sprd,cabc-still-image-command = [
+					  23 00 00 02 55 02
+					  ];
+					sprd,cabc-video-command = [
+					  23 00 00 02 55 03
+					  ];
+
+
+					display-timings {
+						native-mode = <&hx83112a_txd_timing0>;
+
+						hx83112a_txd_timing0: timing0 {
+							clock-frequency = <96000000>;
+							hactive = <720>;
+							vactive = <1600>;
+							hback-porch = <72>;
+							hfront-porch = <100>;
+							vback-porch = <30>;
+							vfront-porch = <25>;
+							hsync-len = <64>;
+							vsync-len = <5>;
+						};
+					};
+
+					oled-backlight {
+						default-brightness = <1306>;
+						sprd,max-level = <4095>;
+						brightness-levels = [
+							39 00 00 03 51 00 04
+						];
+					};
+				};
+			};
+		};
+	};
+};

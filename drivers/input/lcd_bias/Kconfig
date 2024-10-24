@@ -1,0 +1,10 @@
+#
+# Touchscreen driver configuration
+#
+config LCM_BIAS_VOLTAGE_ON
+        tristate "bias voltage of lcm"
+        depends on I2C
+        help
+          Turn on this config.the bias of lcm will setting when turn on screen.
+
+          If unsure, say N.

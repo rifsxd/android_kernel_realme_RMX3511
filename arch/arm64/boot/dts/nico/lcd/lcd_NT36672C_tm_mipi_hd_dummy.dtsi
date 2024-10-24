@@ -1,0 +1,152 @@
+
+/*
+ * R61350 Truly LCD config dtsi file for spreadtrum
+ *
+ * Copyright (C) 2018, Spreadtrum Communications Inc.
+ *
+ * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ */
+
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_NT36672C_tm_mipi_hd_dump: lcd_NT36672C_tm_mipi_hd_dump {
+
+					sprd,dsi-work-mode = <1>; /* video burst mode*/
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "rgb888";
+
+					sprd,phy-bit-clock = <1158000>;	/* kbps */
+					sprd,phy-escape-clock = <20000>;/* kHz */
+
+					
+					sprd,video-lp-cmd-enable = <1>;
+					sprd,hporch-lp-disable = <1>;
+					sprd,dpi-clk-div = <6>;
+					
+
+					sprd,width-mm = <67>;
+					sprd,height-mm = <153>;
+
+					sprd,power-i2c-bus = <4>;
+					sprd,power-i2c-addr = <0x3e>;
+					sprd,power-i2c-reg = [00 01 03];
+					sprd,power-i2c-val = [0F 0F 03];
+
+					sprd,esd-check-enable = <0>;
+					sprd,esd-check-mode = <0>;
+					sprd,esd-check-period = <2000>;
+					sprd,esd-check-register = <0x0A>;
+					sprd,esd-check-value = <0x9C>;
+
+					sprd,reset-on-sequence = <1 6>, <0 6>, <1 6>, <0 6>, <1 11>;
+					sprd,reset-off-sequence = <1 5>;
+
+					//sprd,use-dcs-write;
+					sprd,initial-command = [
+						29 00 00 02 FF 23
+						29 00 00 02 FB 01
+						29 00 00 02 00 80
+						29 00 00 02 07 00
+						29 00 00 02 08 01
+						29 00 00 02 09 00
+
+						29 00 00 02 FF 25
+						29 00 00 02 FB 01
+						29 00 00 02 18 22
+
+						29 00 00 02 FF 2A
+						29 00 00 02 FB 01
+						29 00 00 02 1C 00
+                        29 00 00 02 1D 36
+
+
+						29 00 00 02 FF C0
+						29 00 00 02 FB 01
+						29 00 00 02 9C 11
+						29 00 00 02 9D 11
+
+						29 00 00 02 FF D0
+						29 00 00 02 FB 01
+						29 00 00 02 53 22
+						29 00 00 02 54 02
+
+						29 00 00 02 FF E0
+						29 00 00 02 FB 01
+						29 00 00 02 35 82
+						29 00 00 02 85 32
+
+						29 00 00 02 FF F0
+						29 00 00 02 FB 01
+						29 00 00 02 5A 00
+						29 00 00 02 D2 52
+
+						29 00 00 02 FF 10
+						29 00 00 02 FB 01
+						29 00 00 06 3B 03 14 36 04 04
+						29 00 00 02 B0 00
+						29 00 00 02 C0 00
+
+						29 00 00 02 35 00
+						//29 00 00 03 51 00 00
+						29 00 00 03 68 01 01
+						29 00 00 02 53 2C
+						29 00 00 02 55 00
+						03 78 00 01 11
+						03 14 00 01 29
+						];
+
+					sprd,sleep-in-command = [
+						15 14 00 01 28
+						15 78 00 01 10 
+						];
+
+					sprd,sleep-out-command = [
+						15 78 00 01 11
+						15 14 00 01 29
+						];
+
+					sprd,cabc-off-command = [
+						23 00 00 02 55 00
+						];
+					sprd,cabc-ui-command = [
+						23 00 00 02 55 01
+						];
+					sprd,cabc-still-image-command = [
+						23 00 00 02 55 02
+						];
+					sprd,cabc-video-command = [
+						23 00 00 02 55 03
+						];
+
+
+					display-timings {
+						native-mode = <&NT36672C_tm_dummy_timing0>;
+
+						NT36672C_tm_dummy_timing0: timing0 {
+							clock-frequency = <193000000>;
+							hactive = <1080>;
+							vactive = <2408>;
+							hback-porch = <68>;
+							hfront-porch = <132>;
+							vback-porch = <54>;
+							vfront-porch = <12>;
+							hsync-len = <16>;
+							vsync-len = <8>;
+						};
+					};
+
+						oled-backlight {			
+						default-brightness = <1306>;	
+						sprd,max-level = <4095>;
+						brightness-levels = [				
+            		    	39 00 00 03 51 00 04
+						];
+					};
+				};
+			};
+		};
+	};
+};

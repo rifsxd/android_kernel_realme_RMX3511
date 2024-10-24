@@ -1,0 +1,10 @@
+#ifdef VENDOR_EDIT
+config OPPO_DEVICE_IFNO
+        bool "config oppo devinfo"
+        select OPPO_ARCH_FILE
+        help
+        define this config to compile devinfo.c for device register.
+
+source "drivers/soc/oppo/oppo_devinfo/Kconfig"
+
+#endif

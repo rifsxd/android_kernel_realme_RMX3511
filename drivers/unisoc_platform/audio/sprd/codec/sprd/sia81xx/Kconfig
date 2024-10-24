@@ -1,0 +1,4 @@
+config SND_SOC_UNISOC_CODEC_SIA81XX
+	tristate "SoC Audio for SIA81XX PA"
+	help
+	  This option enables support for SIA81XX PA.

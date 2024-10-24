@@ -1,0 +1,1 @@
+obj-$(CONFIG_DRM_SPRD_OPPO_DISPLAY_PRIVATE_API) += oppo_display_private_api.o

@@ -1,0 +1,105 @@
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_icnl9911_milan_hdplus_lxk: lcd_icnl9911_milan_hdplus_lxk {
+
+					sprd,dsi-work-mode = <1>;
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "rgb888";
+
+					sprd,phy-bit-clock = <691000>;
+					sprd,phy-escape-clock = <20000>;
+
+					sprd,width-mm = <68>;
+					sprd,height-mm = <121>;
+
+					sprd,esd-check-enable = <1>;
+					sprd,esd-check-mode = <1>;  /*Read register*/
+					sprd,esd-check-period = <2000>;
+					sprd,esd-check-register = <0x0A>;
+					sprd,esd-check-value = <0x9C>;
+
+					sprd,reset-on-sequence = <1 10>, <0 10>, <1 120>;
+					sprd,reset-off-sequence = <0 40>;
+
+					sprd,initial-command = [
+							39 00 00 03 F0 5A 59
+							39 00 00 03 F1 A5 A6
+							39 00 00 1F B0 89 88 87 86 89 00 00 00 55 55 33 33 05 00 00 98 00 00 0F 05 04 03 02 01 02 03 04 04 00 00
+							39 00 00 21 B1 52 54 85 85 05 00 00 75 00 00 04 08 54 00 00 00 44 40 02 01 40 02 01 40 02 01 40 02 01 00 00 00
+							39 00 00 12 B2 54 C4 82 05 40 02 01 40 02 01 05 05 54 0C 0C 0D 0B
+							39 00 00 1C B3 00 11 07 11 07 26 26 91 A2 33 44 00 26 00 18 01 02 08 20 30 61 07 41 20 40 00 40
+							39 00 00 1D B4 00 02 02 02 00 02 22 23 23 02 0D 0F 11 13 02 05 07 02 00 00 00 02 FF FF FC 83 80 00
+							39 00 00 1D B5 00 02 02 02 00 02 22 23 23 02 0C 0E 10 12 02 04 06 02 00 00 00 02 FF FF FC 83 80 00
+							39 00 00 19 B8 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+							39 00 00 0E BB 01 05 09 11 0D 19 1D 55 25 69 00 21 25
+							39 00 00 0F BC 00 00 00 00 02 20 FF 00 03 13 01 73 33 02
+							39 00 00 0B BD E9 02 4F CF 72 A4 08 44 AE 15
+							39 00 00 0B BE 6E 6E 5A 3C 0C 77 43 07 0E 0E
+							39 00 00 09 BF 07 25 07 25 7F 00 11 04
+							39 00 00 0A C0 10 00 1F FF FF FF 00 FF 00
+							39 00 00 14 C1 C0 20 20 96 04 55 55 04 7A 40 36 00 07 CF FF FF C0 00 C0
+							23 00 00 02 C2 00
+							39 00 00 0C C3 06 00 FF 00 FF 00 00 81 01 00 00
+							39 00 00 0B C4 84 01 2B 41 00 3C 00 03 03 2E
+							39 00 00 0C C5 03 1C B8 B8 30 10 42 66 08 0E 14
+							39 00 00 0B C6 87 9B 2A 29 29 31 7F 34 08 04
+							23 00 00 02 D2 42
+							39 00 00 17 C7 F7 CF B2 9B 71 51 21 74 3C 10 E2 AD 02 D4 B6 8B 74 53 43 7F E4 00
+							39 00 00 17 C8 F7 CF B2 9B 71 51 21 74 3C 10 E2 AD 02 D4 B6 8B 74 53 0F 7F E4 00
+							39 00 00 05 FE FF FF FF 40
+							39 00 00 03 F1 5A 59
+							39 00 00 03 F0 A5 A6
+							23 00 00 02 53 2C
+							23 00 00 02 55 00
+							23 05 00 02 35 00
+							23 78 00 02 11 00
+							23 23 00 02 29 00
+							23 05 00 02 26 01
+						];
+			sprd,page-unlock-command = [
+			39 00 00 03 F0 5A 59  
+			39 00 00 03 F1 A5 A6
+						];
+					sprd,sleep-in-command = [
+			23 00 00 02 26 08
+			23 23 00 02 28 00
+			23 78 00 02 10 00
+						];
+					sprd,sleep-out-command = [
+			23 78 00 02 11 00
+			23 23 00 02 29 00
+			23 00 00 02 26 01
+						];
+
+					display-timings {
+						native-mode = <&icn9911_ls_timing0>;
+
+						icn9911_ls_timing0: timing0 {
+							clock-frequency = <96000000>;
+				hactive = <720>;
+				vactive = <1600>;
+				hback-porch = <48>;
+				hfront-porch = <48>;
+				vback-porch = <32>;
+				vfront-porch = <150>;
+				hsync-len = <4>;
+				vsync-len = <4>;
+						};
+					};
+				oled-backlight {			
+						default-brightness = <1356>;	
+						sprd,max-level = <4095>;
+						brightness-levels = [				
+            		    	39 00 00 03 51 00 00
+						];
+					};
+					
+				};
+			};
+		};
+	};
+};
+
